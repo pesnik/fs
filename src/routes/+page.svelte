@@ -12,26 +12,21 @@
 </script>
 
 <main class="container">
-  <h1>Welcome to Tauri + Svelte</h1>
-
-  <div class="row">
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-    </a>
-    <a href="https://tauri.app" target="_blank">
-      <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-    </a>
-    <a href="https://kit.svelte.dev" target="_blank">
-      <img src="/svelte.svg" class="logo svelte-kit" alt="SvelteKit Logo" />
-    </a>
-  </div>
-  <p>Click on the Tauri, Vite, and SvelteKit logos to learn more.</p>
+  <h1>Summon your agent</h1>
 
   <form class="row" onsubmit={greet}>
-    <input id="greet-input" placeholder="Enter a name..." bind:value={name} />
-    <button type="submit">Greet</button>
+    <input id="greet-input" placeholder="Enter folder path..." bind:value={name} />
+    <button type="submit">Send</button>
   </form>
-  <p>{greetMsg}</p>
+  {#if greetMsg.split('\n').length > 1}
+    {#each greetMsg.split('\n') as word}
+      {#if word}
+        <span class="word">{word}</span>
+      {/if}
+    {/each}
+  {:else}
+    <p>{greetMsg}</p>
+  {/if}
 </main>
 
 <style>
